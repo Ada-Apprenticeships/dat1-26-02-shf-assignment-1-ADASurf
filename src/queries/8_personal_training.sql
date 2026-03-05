@@ -1,5 +1,5 @@
 .open fittrackpro.db
-.mode column
+.mode box
 
 -- 8.1 
 SELECT pts.session_id,
@@ -11,3 +11,4 @@ FROM personal_training_sessions pts
 JOIN staff s ON pts.staff_id = s.staff_id
 JOIN members m ON pts.member_id = m.member_id
 WHERE s.first_name = 'Ivy' AND s.last_name = 'Irwin';
+-- again || is the operator for concatenation

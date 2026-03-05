@@ -1,5 +1,5 @@
 .open fittrackpro.db
-.mode column
+.mode box
 
 -- 1.1
 SELECT member_id, first_name, last_name, email, join_date
@@ -22,6 +22,7 @@ JOIN class_attendance ca ON m.member_id = ca.member_id
 GROUP BY m.member_id
 ORDER BY registration_count DESC
 LIMIT 1;
+-- LIMIT 1 chooses only top result
 
 -- 1.5
 SELECT m.member_id, m.first_name, m.last_name, COUNT(*) AS registration_count
@@ -38,4 +39,5 @@ FROM (
     FROM class_attendance
     GROUP BY member_id
     HAVING COUNT(*) >= 2
+    --subquery finding members that have had multiple sessions
 );

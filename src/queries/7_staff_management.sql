@@ -1,5 +1,5 @@
 .open fittrackpro.db
-.mode column
+.mode box
 
 -- 7.1 
 SELECT staff_id,
@@ -19,3 +19,5 @@ WHERE s.position = 'Trainer'
 AND pts.session_date BETWEEN '2025-01-20' AND date('2025-01-20', '+30 days')
 GROUP BY s.staff_id
 HAVING COUNT(*) >= 1;
+-- the final HAVING might be redundant because its already filtered
+-- but i left it in just in case

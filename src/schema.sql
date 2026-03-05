@@ -1,5 +1,5 @@
 .open fittrackpro.db
-.mode column
+.mode box
 
 PRAGMA foreign_keys = ON;
 -- see comment on the insertion.sql about this

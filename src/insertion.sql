@@ -1,5 +1,5 @@
 .open fittrackpro.db
-.mode column
+.mode box
 
 PRAGMA foreign_keys = ON;
 -- when this is turned on, it causes errors due to of some data missing from the relationships between the tables

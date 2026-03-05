@@ -1,5 +1,5 @@
 .open fittrackpro.db
-.mode column
+.mode box
 
 -- 6.1 
 INSERT INTO attendance (attendance_id, member_id, location_id, check_in_time)
@@ -18,6 +18,8 @@ SELECT strftime('%W', check_in_time) AS day_of_week,
 FROM attendance
 GROUP BY day_of_week
 ORDER BY visit_count DESC;
+-- %W gives the number of the week about the whole year
+-- by that I mean the index of the number for the week (from total weeks in year)
 
 -- 6.4 
 SELECT l.name AS location_name,
@@ -26,3 +28,6 @@ SELECT l.name AS location_name,
 FROM locations l
 LEFT JOIN attendance a ON l.location_id = a.location_id
 GROUP BY l.location_id;
+-- MAX takes the latest value, MIN takes earliest value, 
+-- add 1 to account for the first day
+-- again LEFT JOIN takes left table values unconditionally

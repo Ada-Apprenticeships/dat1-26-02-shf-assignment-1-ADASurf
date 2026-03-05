@@ -1,5 +1,5 @@
 .open fittrackpro.db
-.mode column
+.mode box
 
 -- 4.1 
 SELECT c.class_id,
@@ -8,6 +8,7 @@ SELECT c.class_id,
 FROM classes c
 JOIN class_schedule cs ON c.class_id = cs.class_id
 JOIN staff s ON cs.staff_id = s.staff_id;
+-- || is an operator to concatenate the strings, could've used CONCAT()
 
 -- 4.2 
 SELECT c.class_id,
@@ -20,6 +21,7 @@ JOIN class_schedule cs ON c.class_id = cs.class_id
 LEFT JOIN class_attendance ca ON cs.schedule_id = ca.schedule_id
 WHERE date(cs.start_time) = '2025-02-01'
 GROUP BY cs.schedule_id;
+-- LEFT JOIN takes all the data from the left table unconditionally
 
 -- 4.3 
 INSERT INTO class_attendance (class_attendance_id, schedule_id, member_id, attendance_status)
@@ -45,3 +47,7 @@ LIMIT 1;
 SELECT ROUND(COUNT(*) * 1.0 / COUNT(DISTINCT member_id), 2) AS avg_classes_per_member
 FROM class_attendance
 WHERE attendance_status IN ('Registered', 'Attended');
+-- the * 1.0 is to make it divide by decimals since normal integer division would cause
+-- 10/3 to give 3 rather than 3.33 which would be less accurate
+-- so the .0 introduces decimals
+-- ROUND rounds it to 2 decimal points

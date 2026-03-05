@@ -1,5 +1,5 @@
 .open fittrackpro.db
-.mode column
+.mode box
 
 -- 5.1 
 SELECT m.member_id,
@@ -17,6 +17,8 @@ SELECT ms.type AS membership_type,
 FROM memberships ms
 JOIN attendance a ON ms.member_id = a.member_id
 GROUP BY ms.type;
+-- calculates the difference in julianday values
+-- 1440 is the number of minutes in a day 
 
 -- 5.3 
 SELECT m.member_id,
@@ -27,3 +29,4 @@ SELECT m.member_id,
 FROM members m
 JOIN memberships ms ON m.member_id = ms.member_id
 WHERE strftime('%Y', ms.end_date) = '2025';
+-- the %Y takes only the year from the end_date
