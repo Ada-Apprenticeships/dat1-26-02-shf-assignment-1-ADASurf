@@ -2,6 +2,7 @@
 .mode column
 
 PRAGMA foreign_keys = ON;
+-- test note
 
 INSERT INTO locations VALUES
 (1,'Downtown Fitness','123 Main St, London','020 555 1234','downtown@fittrackpro.com','06:00-22:00'),
