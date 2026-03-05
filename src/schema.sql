@@ -2,6 +2,7 @@
 .mode column
 
 PRAGMA foreign_keys = ON;
+-- see comment on the insertion.sql about this
 
 DROP TABLE IF EXISTS equipment_maintenance_log;
 DROP TABLE IF EXISTS member_health_metrics;
@@ -16,6 +17,7 @@ DROP TABLE IF EXISTS equipment;
 DROP TABLE IF EXISTS staff;
 DROP TABLE IF EXISTS members;
 DROP TABLE IF EXISTS locations;
+-- DROP TABLE exists to reset the db when schema is re read/remove duplicated tables
 
 CREATE TABLE locations(
     location_id INT PRIMARY KEY,
@@ -118,6 +120,7 @@ CREATE TABLE payments(
     amount DECIMAL(10,2) NOT NULL CHECK (amount > 0),
     payment_date DATETIME NOT NULL,
     payment_method VARCHAR(20) NOT NULL CHECK (payment_method IN ('Credit Card', 'Bank Transfer', 'PayPal', 'Cash')),
+    -- added cash as a payment method due to inconsistency with the Read Me and csv
     payment_type VARCHAR(30) NOT NULL CHECK (payment_type IN ('Monthly membership fee', 'Day pass')),
     FOREIGN KEY (member_id) REFERENCES members(member_id)
 );
@@ -144,6 +147,7 @@ CREATE TABLE member_health_metrics(
     muscle_mass DECIMAL(5,2) CHECK (muscle_mass > 0),
     bmi DECIMAL(5,2) CHECK (bmi > 0),
     FOREIGN KEY (member_id) REFERENCES members(member_id)
+    -- decimal allows is like varchar for eg here 5 characters but then allows 2 decimal points 
 );
 
 CREATE TABLE equipment_maintenance_log(
