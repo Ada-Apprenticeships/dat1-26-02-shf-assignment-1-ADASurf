@@ -2,7 +2,11 @@
 .mode column
 
 PRAGMA foreign_keys = ON;
--- test note
+-- when this is turned on, it causes errors due to of some data missing from the relationships between the tables
+-- so added 2 extra placeholder code for them in the insertions but this changes some query results
+-- if i wasnt supposed to do this please just remove the 2 extra lines (commented down below)
+-- and remove the pragma foreign_keys = ON part
+-- queries all work with original data when its off
 
 INSERT INTO locations VALUES
 (1,'Downtown Fitness','123 Main St, London','020 555 1234','downtown@fittrackpro.com','06:00-22:00'),
@@ -43,8 +47,11 @@ INSERT INTO class_schedule VALUES
 (2,2,4,'2025-02-01 10:00:00','2025-02-01 11:00:00'),
 (3,3,2,'2025-02-02 18:00:00','2025-02-02 18:30:00'),
 (7,2,4,'2025-02-05 12:00:00','2025-02-05 13:00:00'),
-(8,1,2,'2025-02-08 09:00:00','2025-02-08 09:45:00'),
-(9,2,4,'2025-02-08 10:00:00','2025-02-08 11:00:00');
+(8,1,2,'2025-02-08 09:00:00','2025-02-08 09:45:00'), -- extra data
+(9,2,4,'2025-02-08 10:00:00','2025-02-08 11:00:00'); -- extra data
+-- schedules 8 and 9 added as they are referenced in class_attendance
+-- but were missing from the CSV data here 
+-- since the tables are relational, them being missing causes the insertion to return an error
 
 INSERT INTO memberships VALUES
 (1,1,'Standard','2024-01-01','2025-01-01','Inactive'),
